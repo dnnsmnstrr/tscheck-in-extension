@@ -4,6 +4,7 @@ import { UUID } from "crypto";
 import got from "got";
 
 const TSCHECK_IN_API = "https://tscheck.in/api/generate";
+const LOADING_TEXT = "Generating Question";
 
 type TscheckIn = {
   english: string;
@@ -47,8 +48,9 @@ export default async function main() {
 
   const toast = await showToast({
     style: Toast.Style.Animated,
-    title: "Generating Icebreaker",
+    title: LOADING_TEXT,
   });
+
   const prompt = await getTscheckIn();
 
   if (prompt && prompt.english) {
